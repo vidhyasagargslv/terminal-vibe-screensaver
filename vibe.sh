@@ -1,12 +1,18 @@
 #!/bin/bash
 
-# Minimal Neon Colors - Bright and clean
+# Enhanced Neon Colors - More vibrant and varied
 NEON_PINK='\033[38;5;198m'      # Hot pink
 NEON_CYAN='\033[38;5;51m'       # Electric cyan  
 NEON_GREEN='\033[38;5;46m'      # Matrix green
 NEON_YELLOW='\033[38;5;226m'    # Electric yellow
 NEON_WHITE='\033[38;5;15m'      # Pure white
 NEON_PURPLE='\033[38;5;129m'    # Electric purple
+NEON_BLUE='\033[38;5;39m'       # Electric blue
+NEON_RED='\033[38;5;196m'       # Hot red
+NEON_ORANGE='\033[38;5;208m'    # Electric orange
+NEON_MAGENTA='\033[38;5;201m'   # Hot magenta
+BRIGHT='\033[1m'                # Bold/Bright
+DIM='\033[2m'                   # Dim
 NC='\033[0m'                    # No Color
 
 # Cleanup
@@ -22,7 +28,7 @@ trap cleanup INT TERM
 clear
 tput civis 2>/dev/null || true
 
-# Get system info - minimal and fast
+# Get system info - enhanced
 get_system_info() {
     USER_NAME=$(whoami)
     HOSTNAME=$(hostname)
@@ -33,69 +39,56 @@ get_system_info() {
     WIFI_IP=$(ip route get 1.1.1.1 2>/dev/null | grep -oP 'src \K\S+' || echo "N/A")
     GIT_VERSION=$(git --version 2>/dev/null | cut -d' ' -f3 | cut -c1-6 || echo "N/A")
     PYTHON_VERSION=$(python3 --version 2>/dev/null | cut -d' ' -f2 | cut -c1-5 || echo "N/A")
+    LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//' || echo "0.0")
 }
 
 # Compact ASCII - exactly sized for 80x20
 display_terminal() {
     get_system_info
     clear
-    
-    # Header (2 lines)
-    echo -e "${NEON_CYAN}╔══════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${NEON_CYAN}║${NEON_WHITE}                           💻 CYBER TERMINAL 💻      ${NEON_CYAN}║${NC}"
-    echo -e "${NEON_CYAN}╚══════════════════════════════════════════════════════════════════════════════╝${NC}"
-    
+
     echo # Spacing line (1 line)
     
-    # Main content area (14 lines total for 80x20)
-    # Left side - Compact "CODER SPACE" ASCII
-    echo -e "${NEON_PURPLE}     ██████╗ ██████╗ ██████╗ ███████╗██████╗     ${NEON_CYAN}⚡ SYSTEM_CORE${NC}"
-    echo -e "${NEON_PURPLE}    ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗    ${NEON_GREEN}root@    ${NEON_WHITE}$USER_NAME@$HOSTNAME${NC}"
-    echo -e "${NEON_PURPLE}    ██║     ██║   ██║██║  ██║█████╗  ██████╔╝    ${NEON_GREEN}kernel:  ${NEON_WHITE}$OS${NC}"
-    echo -e "${NEON_PURPLE}    ██║     ██║   ██║██║  ██║██╔══╝  ██╔══██╗    ${NEON_GREEN}uptime:  ${NEON_WHITE}$UPTIME${NC}"
-    echo -e "${NEON_PURPLE}    ╚██████╗╚██████╔╝██████╔╝███████╗██║  ██║    ${NEON_GREEN}memory:  ${NEON_WHITE}${MEMORY}GB${NC}"
-    echo -e "${NEON_PURPLE}     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝    ${NEON_GREEN}wifi:    ${NEON_WHITE}$WIFI_IP${NC}"
-    echo                                                      
+    # Enhanced ASCII with rainbow gradient colors
+    echo -e "${BRIGHT}${NEON_PURPLE}     ██████╗ ${NEON_MAGENTA}██████╗ ${NEON_PINK}██████╗ ${NEON_RED}███████╗${NEON_ORANGE}██████╗     ${NEON_CYAN}${BRIGHT}⚡ SYSTEM_CORE ⚡${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██╔════╝${NEON_MAGENTA}██╔═══██╗${NEON_PINK}██╔══██╗${NEON_RED}██╔════╝${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ ADMIN:   ${NEON_WHITE}$USER_NAME${NEON_YELLOW}@${NEON_WHITE}$HOSTNAME${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}█████╗  ${NEON_ORANGE}██████╔╝    ${NEON_GREEN}${BRIGHT}▶ KERNEL:  ${NEON_WHITE}$OS${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}██╔══╝  ${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ UPTIME:  ${NEON_YELLOW}$UPTIME${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ╚██████╗${NEON_MAGENTA}╚██████╔╝${NEON_PINK}██████╔╝${NEON_RED}███████╗${NEON_ORANGE}██║  ██║    ${NEON_GREEN}${BRIGHT}▶ MEMORY:  ${NEON_CYAN}${MEMORY}GB${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}     ╚═════╝${NEON_MAGENTA} ╚═════╝ ${NEON_PINK}╚═════╝ ${NEON_RED}╚══════╝${NEON_ORANGE}╚═╝  ╚═╝    ${NEON_GREEN}${BRIGHT}▶ LOAD:    ${NEON_RED}$LOAD_AVG${NC}"
+    echo -e "                                                     ${NEON_BLUE}${BRIGHT}▶ WIFI_IP: ${NEON_YELLOW}$WIFI_IP${NC}"                                                      
     echo # Spacing
-    echo -e "${NEON_GREEN}    ███████╗██████╗  █████╗  ██████╗███████╗     ${NEON_PINK}⚡ DEV_STACK${NC}"
-    echo -e "${NEON_GREEN}    ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝     ${NEON_YELLOW}git      ${NEON_WHITE}v$GIT_VERSION${NC}"
-    echo -e "${NEON_GREEN}    ███████╗██████╔╝███████║██║     █████╗       ${NEON_YELLOW}python3  ${NEON_WHITE}v$PYTHON_VERSION${NC}"
-    echo -e "${NEON_GREEN}    ╚════██║██╔═══╝ ██╔══██║██║     ██╔══╝       ${NEON_YELLOW}shell    ${NEON_WHITE}zsh${NC}"
-    echo -e "${NEON_GREEN}    ███████║██║     ██║  ██║╚██████╗███████╗     ${NEON_CYAN}status:  ${NEON_WHITE}[ACTIVE]${NC}"
-    echo -e "${NEON_GREEN}    ╚══════╝╚═╝     ╚═╝  ╚═╝ ╚═════╝╚══════╝${NC}"
+    # Enhanced second section with gradient colors
+    echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╗ ${NEON_BLUE} █████╗ ${NEON_PURPLE}██████╗ ${NEON_MAGENTA}███████╗     ${NEON_PINK}${BRIGHT}⚡ DEV_STACK ⚡${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ██╔════╝${NEON_CYAN}██╔══██╗${NEON_BLUE}██╔══██╗${NEON_PURPLE}██╔════╝${NEON_MAGENTA}██╔════╝     ${NEON_YELLOW}${BRIGHT}◆ GIT:     ${NEON_WHITE}v${GIT_VERSION}${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╔╝${NEON_BLUE}███████║${NEON_PURPLE}██║     ${NEON_MAGENTA}█████╗       ${NEON_YELLOW}${BRIGHT}◆ PYTHON:  ${NEON_WHITE}v${PYTHON_VERSION}${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ╚════██║${NEON_CYAN}██╔═══╝ ${NEON_BLUE}██╔══██║${NEON_PURPLE}██║     ${NEON_MAGENTA}██╔══╝       ${NEON_YELLOW}${BRIGHT}◆ SHELL:   ${NEON_WHITE}zsh${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ███████║${NEON_CYAN}██║     ${NEON_BLUE}██║  ██║${NEON_PURPLE}╚██████╗${NEON_MAGENTA}███████╗     ${NEON_RED}${BRIGHT}◆ STATUS:  ${NEON_GREEN}[${BRIGHT}ACTIVE${NC}${NEON_GREEN}]${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ╚══════╝${NEON_CYAN}╚═╝     ${NEON_BLUE}╚═╝  ╚═╝${NEON_PURPLE} ╚═════╝${NEON_MAGENTA}╚══════╝     ${NEON_ORANGE}${BRIGHT}◆ TIME:    ${NEON_WHITE}$(date '+%H:%M:%S')${NC}"
     echo # Spacing
     
-    # Footer (2 lines)
-    echo -e "${NEON_PINK}╔══════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${NEON_PINK}║${NEON_PURPLE}                        ⚡ Press Ctrl+C to exit ⚡  ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╚══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    # Enhanced footer with multiple colors
+    echo -e "${BRIGHT}${NEON_PINK}╔══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${BRIGHT}${NEON_PINK}║${NEON_YELLOW}${BRIGHT}                      ⚡⚡⚡ ${NEON_WHITE}Press Ctrl+C to exit${NEON_YELLOW} ⚡⚡⚡                      ${NEON_PINK}║${NC}"
+    echo -e "${BRIGHT}${NEON_PINK}║${NEON_CYAN}                        【 ${NEON_WHITE}TERMINAL VIBES ACTIVE${NEON_CYAN} 】                        ${NEON_PINK}║${NC}"
+    echo -e "${BRIGHT}${NEON_PINK}╚══════════════════════════════════════════════════════════════════════════════╝${NC}"
 }
 
-# Simple init - no fancy loading
-echo -e "${NEON_CYAN}Loading...${NC}"
-sleep 0.5
+# Enhanced loading sequence
+echo -e "${BRIGHT}${NEON_CYAN}◢◣◢◣ ${NEON_WHITE}Initializing Cyber Terminal${NEON_CYAN} ◢◣◢◣${NC}"
+sleep 0.3
+echo -e "${BRIGHT}${NEON_MAGENTA}⟨⟨⟨ ${NEON_WHITE}Loading matrix protocols${NEON_MAGENTA} ⟩⟩⟩${NC}"
+sleep 0.3
+echo -e "${BRIGHT}${NEON_GREEN}✦✧✦ ${NEON_WHITE}Terminal vibes activated${NEON_GREEN} ✦✧✦${NC}"
+sleep 0.4
 
-# Display once - no animations or loops
+# Display the enhanced terminal
 display_terminal
 
-# Wait for exit
+# Keep it running
 while true; do
     sleep 1
-dones <<< "$left_content" || true
-    IFS=$'\n' read -rd '' -a right_lines <<< "$right_content" || true
-    
-    # Get max lines
-    max_lines=${#left_lines[@]}
-    if [ ${#right_lines[@]} -gt $max_lines ]; then
-        max_lines=${#right_lines[@]}
-    fi
-    
-    # Display side by side with better spacing
-    for ((i=0; i<max_lines; i++)); do
-        left_line="${left_lines[i]:-}"
-        right_line="${right_lines[i]:-}"
-        
-        # Calculate spacing for perfect alignment
+done
         left_clean=$(echo -e "$left_line" | sed 's/\x1b\[[0-9;]*m//g' | sed 's/\x1b\[[0-9]*;//g')
         spaces_needed=$((50 - ${#left_clean}))
         if [ $spaces_needed -lt 2 ]; then
