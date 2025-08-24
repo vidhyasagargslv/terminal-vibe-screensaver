@@ -72,69 +72,57 @@ get_system_info() {
     PUBLIC_IP=$(timeout 2 curl -s ifconfig.me 2>/dev/null || echo "Offline")
 }
 
-# ASCII Art for coder theme
+# ASCII Art for coder theme - smaller version
 ascii_art() {
     cat << "EOF"
-    ╔═══════════════════════════════════════╗
-    ║     ██████╗ ██████╗ ██████╗ ███████╗  ║
-    ║    ██╔════╝██╔═══██╗██╔══██╗██╔════╝  ║
-    ║    ██║     ██║   ██║██║  ██║█████╗    ║
-    ║    ██║     ██║   ██║██║  ██║██╔══╝    ║
-    ║    ╚██████╗╚██████╔╝██████╔╝███████╗  ║
-    ║     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ║
-    ║                                       ║
-    ║    ██╗   ██╗██╗██████╗ ███████╗███████╗║
-    ║    ██║   ██║██║██╔══██╗██╔════╝██╔════╝║
-    ║    ██║   ██║██║██████╔╝█████╗  ███████╗║
-    ║    ╚██╗ ██╔╝██║██╔══██╗██╔══╝  ╚════██║║
-    ║     ╚████╔╝ ██║██████╔╝███████╗███████║║
-    ║      ╚═══╝  ╚═╝╚═════╝ ╚══════╝╚══════╝║
-    ║                                       ║
-    ║        ⚡ POWERED BY CAFFEINE ⚡        ║
-    ║                                       ║
-    ║         { "status": "vibing" }        ║
-    ║                                       ║
-    ║    ┌─┐┬ ┬┌─┐┬─┐┬ ┬  ┌┬┐┌─┐┌┬┐┌─┐    ║
-    ║    │─┼┐│ │├┤ ├┬┘└┬┘  ││││ │ ││├┤     ║
-    ║    └─┘┘└─┘└─┘┴└─ ┴   ┴ ┴└─┘─┴┘└─┘    ║
-    ╚═══════════════════════════════════════╝
+ ╔════════════════════════╗
+ ║  ██████╗  ██████╗  ██╗║
+ ║ ██╔════╝ ██╔═══██╗██║ ║
+ ║ ██║      ██║   ██║██║ ║
+ ║ ╚██████╗ ╚██████╔╝██║ ║
+ ║  ╚═════╝  ╚═════╝ ╚═╝ ║
+ ║                        ║
+ ║   { "vibing": true }   ║
+ ║     ⚡ CODE VIBES ⚡     ║
+ ╚════════════════════════╝
 EOF
 }
 
-# System info display
-display_info() {
-    echo -e "${NEON_PINK}╔══════════════════════════════════════════════╗${NC}"
-    echo -e "${NEON_PINK}║${NEON_WHITE}${GLOW}                SYSTEM STATUS                ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╠══════════════════════════════════════════════╣${NC}"
+# Left panel (ASCII + Network info)
+display_left_panel() {
+    echo -e "${NEON_CYAN}"
+    ascii_art
+    echo -e "${NC}"
+    echo
+    echo -e "${NEON_PINK}╔═══════════════════════╗${NC}"
+    echo -e "${NEON_PINK}║${NEON_BLUE}    NETWORK STATUS    ${NEON_PINK}║${NC}"
+    echo -e "${NEON_PINK}╠═══════════════════════╣${NC}"
+    printf "${NEON_PINK}║${NEON_ORANGE} Local: %-11s${NEON_PINK}║${NC}\n" "$LOCAL_IP"
+    printf "${NEON_PINK}║${NEON_ORANGE} Public: %-10s${NEON_PINK}║${NC}\n" "$(echo $PUBLIC_IP | cut -c1-10)"
+    echo -e "${NEON_PINK}╚═══════════════════════╝${NC}"
+}
+
+# Right panel (System info)
+display_right_panel() {
+    echo -e "${NEON_PINK}╔═══════════════════════════════════╗${NC}"
+    echo -e "${NEON_PINK}║${NEON_WHITE}         SYSTEM STATUS           ${NEON_PINK}║${NC}"
+    echo -e "${NEON_PINK}╠═══════════════════════════════════╣${NC}"
     
-    printf "${NEON_PINK}║${NEON_YELLOW} 👤 User:     ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$USER_NAME@$HOSTNAME"
-    printf "${NEON_PINK}║${NEON_YELLOW} 💻 OS:       ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$(echo $OS | cut -c1-24)"
-    printf "${NEON_PINK}║${NEON_YELLOW} 🔧 Kernel:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$KERNEL"
-    printf "${NEON_PINK}║${NEON_YELLOW} 🐚 Shell:    ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$SHELL_VERSION"
-    printf "${NEON_PINK}║${NEON_YELLOW} ⏰ Uptime:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$(echo $UPTIME | cut -c1-24)"
-    printf "${NEON_PINK}║${NEON_YELLOW} 🧠 RAM:      ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$MEMORY"
-    printf "${NEON_PINK}║${NEON_YELLOW} 💾 Disk:     ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$DISK"
-    printf "${NEON_PINK}║${NEON_YELLOW} 🔥 CPU:      ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$CPU"
+    printf "${NEON_PINK}║${NEON_YELLOW} User: %-25s${NEON_PINK}║${NC}\n" "$(echo $USER_NAME@$HOSTNAME | cut -c1-25)"
+    printf "${NEON_PINK}║${NEON_YELLOW} OS: %-27s${NEON_PINK}║${NC}\n" "$(echo $OS | cut -c1-27)"
+    printf "${NEON_PINK}║${NEON_YELLOW} RAM: %-26s${NEON_PINK}║${NC}\n" "$MEMORY"
+    printf "${NEON_PINK}║${NEON_YELLOW} CPU: %-26s${NEON_PINK}║${NC}\n" "$(echo $CPU | cut -c1-26)"
     
-    echo -e "${NEON_PINK}╠══════════════════════════════════════════════╣${NC}"
-    echo -e "${NEON_PINK}║${NEON_CYAN}${GLOW}             CODING ENVIRONMENT              ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╠══════════════════════════════════════════════╣${NC}"
+    echo -e "${NEON_PINK}╠═══════════════════════════════════╣${NC}"
+    echo -e "${NEON_PINK}║${NEON_CYAN}       CODING ENVIRONMENT       ${NEON_PINK}║${NC}"
+    echo -e "${NEON_PINK}╠═══════════════════════════════════╣${NC}"
     
-    printf "${NEON_PINK}║${NEON_GREEN} 📝 Editor:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$CODE_EDITOR"
-    printf "${NEON_PINK}║${NEON_GREEN} 📁 Path:     ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$(echo $CURRENT_DIR | cut -c1-24)"
-    printf "${NEON_PINK}║${NEON_GREEN} 🌿 Branch:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$GIT_BRANCH"
-    printf "${NEON_PINK}║${NEON_GREEN} 📋 Changes:  ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$GIT_STATUS files"
-    printf "${NEON_PINK}║${NEON_GREEN} 🐍 Python:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$PYTHON_VERSION"
-    printf "${NEON_PINK}║${NEON_GREEN} 📦 Node:     ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$NODE_VERSION"
+    printf "${NEON_PINK}║${NEON_GREEN} Editor: %-23s${NEON_PINK}║${NC}\n" "$CODE_EDITOR"
+    printf "${NEON_PINK}║${NEON_GREEN} Branch: %-23s${NEON_PINK}║${NC}\n" "$(echo $GIT_BRANCH | cut -c1-23)"
+    printf "${NEON_PINK}║${NEON_GREEN} Python: %-23s${NEON_PINK}║${NC}\n" "$PYTHON_VERSION"
+    printf "${NEON_PINK}║${NEON_GREEN} Node: %-25s${NEON_PINK}║${NC}\n" "$NODE_VERSION"
     
-    echo -e "${NEON_PINK}╠══════════════════════════════════════════════╣${NC}"
-    echo -e "${NEON_PINK}║${NEON_BLUE}${GLOW}              NETWORK STATUS                 ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╠══════════════════════════════════════════════╣${NC}"
-    
-    printf "${NEON_PINK}║${NEON_ORANGE} 🏠 Local:    ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$LOCAL_IP"
-    printf "${NEON_PINK}║${NEON_ORANGE} 🌍 Public:   ${NEON_WHITE}%-24s${NEON_PINK} ║${NC}\n" "$PUBLIC_IP"
-    
-    echo -e "${NEON_PINK}╚══════════════════════════════════════════════╝${NC}"
+    echo -e "${NEON_PINK}╚═══════════════════════════════════╝${NC}"
 }
 
 # Matrix-style effect
@@ -160,43 +148,49 @@ main_display() {
     # Clear and position
     clear
     
-    # Top border with animation
+    # Compact header
     colors=("${NEON_CYAN}" "${NEON_PURPLE}" "${NEON_PINK}")
     color=${colors[$((RANDOM % 3))]}
     
-    echo -e "${color}${GLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${color}║${NEON_WHITE}${GLOW}                               🚀 CODE VIBES 🚀                                  ${color}║${NC}"
-    echo -e "${color}╚═════════════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo -e "${color}╔═══════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${color}║${NEON_WHITE}                       🚀 CODE VIBES 🚀                      ${color}║${NC}"
+    echo -e "${color}╚═══════════════════════════════════════════════════════════════╝${NC}"
     
     echo
     
-    # Display ASCII art
-    echo -e "${NEON_CYAN}${GLOW}"
-    ascii_art
-    echo -e "${NC}"
+    # Create side-by-side layout using paste command
+    # Generate left panel content to temp file
+    display_left_panel > /tmp/left_panel
+    
+    # Generate right panel content to temp file
+    display_right_panel > /tmp/right_panel
+    
+    # Display panels side by side with proper spacing
+    paste /tmp/left_panel /tmp/right_panel | sed 's/\t/  /' || {
+        echo "Left Panel:"
+        cat /tmp/left_panel
+        echo
+        echo "Right Panel:"
+        cat /tmp/right_panel
+    }
+    
+    # Clean up temp files
+    rm -f /tmp/left_panel /tmp/right_panel 2>/dev/null
     
     echo
     
-    # Display system info
-    display_info
+    # Compact matrix effect
+    echo -e "${NEON_YELLOW}╔═══════════════════════════════════════════════════════════════╗${NC}"
+    printf "${NEON_YELLOW}║${NEON_GREEN} >> const dev = { status: 'coding', coffee: '∞' }              ${NEON_YELLOW}║${NC}\n"
+    printf "${NEON_YELLOW}║${NEON_BLUE} // Time: %-45s      ${NEON_YELLOW}║${NC}\n" "$(date '+%Y-%m-%d %H:%M:%S')"
+    echo -e "${NEON_YELLOW}╚═══════════════════════════════════════════════════════════════╝${NC}"
     
     echo
-    
-    # Matrix effect
-    echo -e "${NEON_YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗${NC}"
-    printf "${NEON_YELLOW}║${NEON_WHITE} Code: "
-    matrix_line 70
-    echo -e "${NEON_YELLOW}║${NC}"
-    printf "${NEON_YELLOW}║${NEON_GREEN} >> const developer = { status: 'in the zone', coffee: '∞' }                    ${NEON_YELLOW}║${NC}\n"
-    printf "${NEON_YELLOW}║${NEON_BLUE} // Time: %-50s                       ${NEON_YELLOW}║${NC}\n" "$(date '+%Y-%m-%d %H:%M:%S')"
-    echo -e "${NEON_YELLOW}╚═════════════════════════════════════════════════════════════════════════════════════╝${NC}"
-    
-    echo
-    echo -e "${NEON_RED}${GLOW}                        ⚡ Press Ctrl+C to exit the matrix ⚡${NC}"
+    echo -e "${NEON_RED}                   ⚡ Press Ctrl+C to exit ⚡${NC}"
 }
 
 # Main loop
-echo -e "${NEON_CYAN}${GLOW}Initializing Code Vibes...${NC}"
+echo -e "${NEON_CYAN}Initializing Code Vibes...${NC}"
 sleep 1
 echo -e "${MATRIX_GREEN}Loading developer environment...${NC}"
 sleep 1
