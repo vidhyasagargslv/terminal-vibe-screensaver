@@ -137,42 +137,31 @@ main_display() {
     echo -e "${NEON_CYAN}    ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦ 🧙‍♂️ TERMINAL CODE WIZARD 🧙‍♂️ ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦${NC}"
     echo -e "${NEON_MAGENTA}    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░${NC}"
     echo
+# Main display
+main_display() {
+    # Get fresh system info
+    get_system_info
+    
+    # Clear and position
+    clear
+    
+    # Compact header
+    colors=("${NEON_CYAN}" "${NEON_PURPLE}" "${NEON_PINK}")
+    color=${colors[$((RANDOM % 3))]}
+    
+    echo -e "${color}╔═══════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${color}║${NEON_WHITE}                       🚀 CODE VIBES 🚀                      ${color}║${NC}"
+    echo -e "${color}╚═══════════════════════════════════════════════════════════════╝${NC}"
+    
+    echo
     
     # Create both panels
     left_content=$(display_left_panel)
     right_content=$(display_right_panel)
     
     # Split into arrays
-    IFS=
-
-# Get system info once and display
-echo -e "${NEON_MAGENTA}🔮 Initializing Terminal Wizard...${NC}"
-sleep 1
-echo -e "${NEON_CYAN}⚡ Loading magical code powers...${NC}"
-sleep 1
-echo -e "${NEON_GREEN}🧙‍♂️ Wizard mode activated!${NC}"
-sleep 1
-
-# Single display - no loop, no flicker
-main_display
-
-# Wait for user input to exit
-while true; do
-    sleep 1
-done\n' read -rd '' -a left_lines <<< "$left_content" || true
-    IFS=
-
-# Get system info once and display
-echo -e "${NEON_CYAN}Loading system information...${NC}"
-sleep 1
-
-# Single display - no loop, no flicker
-main_display
-
-# Wait for user input to exit
-while true; do
-    sleep 1
-done\n' read -rd '' -a right_lines <<< "$right_content" || true
+    IFS=$'\n' read -rd '' -a left_lines <<< "$left_content" || true
+    IFS=$'\n' read -rd '' -a right_lines <<< "$right_content" || true
     
     # Get max lines
     max_lines=${#left_lines[@]}
@@ -196,13 +185,15 @@ done\n' read -rd '' -a right_lines <<< "$right_content" || true
     done
     
     echo
-    echo -e "${NEON_RED}    ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡${NC}"
-    echo -e "${NEON_YELLOW}        🔮 Press Ctrl+C to exit the wizard realm 🔮${NC}"
-    echo -e "${NEON_RED}    ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡${NC}"
+    echo -e "${NEON_RED}                   ⚡ Press Ctrl+C to exit ⚡${NC}"
 }
 
 # Get system info once and display
-echo -e "${NEON_CYAN}Loading system information...${NC}"
+echo -e "${NEON_MAGENTA}🔮 Initializing Terminal Wizard...${NC}"
+sleep 1
+echo -e "${NEON_CYAN}⚡ Loading magical code powers...${NC}"
+sleep 1
+echo -e "${NEON_GREEN}🧙‍♂️ Wizard mode activated!${NC}"
 sleep 1
 
 # Single display - no loop, no flicker
