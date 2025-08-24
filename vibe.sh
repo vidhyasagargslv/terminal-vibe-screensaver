@@ -75,16 +75,7 @@ get_system_info() {
 # ASCII Art for coder theme - smaller version
 ascii_art() {
     cat << "EOF"
- ╔════════════════════════╗
- ║  ██████╗  ██████╗  ██╗║
- ║ ██╔════╝ ██╔═══██╗██║ ║
- ║ ██║      ██║   ██║██║ ║
- ║ ╚██████╗ ╚██████╔╝██║ ║
- ║  ╚═════╝  ╚═════╝ ╚═╝ ║
- ║                        ║
- ║   { "vibing": true }   ║
- ║     ⚡ CODE VIBES ⚡     ║
- ╚════════════════════════╝
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasassssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaasaaasssssssaasaaaaaaaaaaaaaaaaaaaaaaaaaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaasasssssssssssssssssssssssssaahvaasdaaaaaaassasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaasaiahihdidhivvvdisssaaasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaahddhvidvihhhvvdvddvdssssaaaaaaaaassssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaayididhvdsviidyividvvvviasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasaaaaassssssssaasssssasaaaaaaaaaaaaaaaavaaahdayivddvivdvayidvadsddvvisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasggiiiviviiviiaiysihydihyidvivvvaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagaasvvvvhyhdivyyvvdhdhihvvaivvivvhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagagaaggagggggggggggggggghdadviiiyivvyyhdhdiddvdyhvivvivvigaagggggggggggggggggaaaaaaaaaaaaaaaaaaggggggggggggggggggggggggggggggyidvvvvvvivadddshyiivvvydddvivdiaggggggggggggggggggggaaaaaaaaaaaaaaaaagggggggggggggggggggggggggggggggsvsyidaddyhvivviivddvvdvdaavvvhsggggggggasssasssgggagaaaagaaaaagaasssggggggggaaaaaaaaaggggggggggggggsggggdyyydahahyiddvvvviivsasviiaasgssaaassyaadsaayyyyyaasssssssssssssaaaaaaaaasssssssssssssssaaaaasasssaaihhaydddyasaaashihggggdhvsasagayysyaasayahhysaahayyyhassasahysssssaassasssssaasaaaaaasssssssssssasaassyiiviiyaaassyydsaaavvdisaahahhayayyysyshhyyhaghhyyaahyayhaaaaasssssssassssssssasssaaasssaassssssaaasasasasssssayaydhhiivvvvydasayaayshayahsaaayaasaayayhssashhidddsasaasaaasaassassssasssaaassssssssssasaasiadsaayayadiiayiiihihaaaaayyaaaayaayidaadhhahhysyhahhydddddaaaaasasaaassassaaassasaassssassssghiivdayyidsyyyydivsaaaaysdavviyhdihhaydyhsadydayhdhddyiihyhahyyyyaaaaaaaaayayyayyaaaaaaaaaasssshdyyyyayaavvdaaayhvddisaahyaassaiddiisaidddhaasdaahyhhydhassyhyhdhshydaayyaaayyhhaayysyasaaaaasashdhhahhyhiyahhyvvvadvididhaaysssagdddhdhdsyssyydyddaaasyayaayyahydhyyaaadyayyyayyyyyhyyyasaaayyaaydvyhysshshhassyyhyiidhaaaaaaayaggaagyadiiviyahshhydyhddsssyyayaaaaahdhyaayyaayysaayyahahdyyyhyaayyahvyhhdsahadadyavvyidgagggaaaaaaaaassaaavhdhdsshhyyhydayhihyyhhagasaadihyyhydyyyyhyasyaaysyaayhaaaysdydysaavyiashyyhdasvhyhaaahyssaassaaaaggihvyddaadydidhyddhashaissasyahyydhhydaysasaahsaasyaaayahagsdyaaayvdhhihsghssshydydvigaadaaasaaaaaahadhhhvihaaiviaidhiiddassaadahdyaasyhydayyyaysaaaysadyaaaaasyisyyayaadihsaydhyaysaahayvaaassayaaadaagayvdayysyadvadavahahisyaaadyhdhhasaahhyhhyaassyyhhayyaayasdivdahdhhdhviiiasaayhhyhshsdyaaaasaassssiaaghydsydayddaiyivhyddhsydyyyhhdyyaysaaadyhhdhhihyaaayayaahdyyaiyiihiivviaaashdssyyddyhyssaaaaaaayaagahvyaiyyyiavvhavhiiiidhhyhshaayyayaaaaaayhdyhhhhiyihasasdiyhhavvhvhhvvshyihhadhasshhaahhsggadaaaaasaggdisyhiaahisdaishiidhdayssaaadaahyyhyghyyahhydyyahdhyashyssahydyihvvsayidaasyhyaasyahdyaaasaaysasgggadhyddsddddvdihdyiaiihssayhhhyaayyidhayyyhhyddyhyyayyiiyasshydvvdvvygaihhiihyassayyayyhaaaaaagaaaaggaydvddsididhyvhyydiddiyhyyssiyassaiaihdhhyhyaadagyddyshaahayyvdvvaayhavidhhdsshayyhydhdyaaaaaaaasaaasvvhhaiihdiiydhhddiihdiysahaaaayshshhaidayasysadhyahadyayvaiiihiayashyyavihdyaaaasdyhyagaaaagaaaasasagvdddhivyiiiihhvdiidddasdyyssydyysayaayyassdsshayhsdyyyyivhivvdhsasahdvdhidyasaasshhaaaaagaaaagsgsssadiiayddiivivyhdiddhiddsysasaaaayaasayasahhyahhhdiadhiivddvyyayayyshaahdiihsshdhdysyhaaasaasagaaagssayiddiyiiviidiivvvhdidivaayyayyyayyyhhyhyyyhyvyhiviisdivviyyayyyaayyyhdyhaiihsssysyhiggaagaagaaaggaagahvhhddviivvvvdsashvdyyyyayyyyyyyyydhayyhhiahhivvvivivvdyyhyyyhyyhayaahdidyhhyhashaaaasggssaaaaaaagyghdddidiivyvidhivihyyhhhhhhhhhhhhhhdayayhvvavvviihhsayiidiihaasahshyhayyihydiasyiayaaaaaaaaaagagassaadhhiiiiihhvsyahahvvdsaahaaayayaysy
 EOF
 }
 
@@ -125,21 +116,6 @@ display_right_panel() {
     echo -e "${NEON_PINK}╚═══════════════════════════════════╝${NC}"
 }
 
-# Matrix-style effect
-matrix_line() {
-    local width=$1
-    local chars=("0" "1" "a" "b" "c" "d" "e" "f" "x" "y" "z" "+" "-" "*" "=" "|")
-    echo -ne "${MATRIX_GREEN}${DIM}"
-    for ((i=0; i<width; i++)); do
-        if (( RANDOM % 4 == 0 )); then
-            echo -ne "${chars[$((RANDOM % ${#chars[@]}))]}"
-        else
-            echo -ne " "
-        fi
-    done
-    echo -ne "${NC}"
-}
-
 # Main display
 main_display() {
     # Get fresh system info
@@ -176,14 +152,6 @@ main_display() {
     
     # Clean up temp files
     rm -f /tmp/left_panel /tmp/right_panel 2>/dev/null
-    
-    echo
-    
-    # Compact matrix effect
-    echo -e "${NEON_YELLOW}╔═══════════════════════════════════════════════════════════════╗${NC}"
-    printf "${NEON_YELLOW}║${NEON_GREEN} >> const dev = { status: 'coding', coffee: '∞' }              ${NEON_YELLOW}║${NC}\n"
-    printf "${NEON_YELLOW}║${NEON_BLUE} // Time: %-45s      ${NEON_YELLOW}║${NC}\n" "$(date '+%Y-%m-%d %H:%M:%S')"
-    echo -e "${NEON_YELLOW}╚═══════════════════════════════════════════════════════════════╝${NC}"
     
     echo
     echo -e "${NEON_RED}                   ⚡ Press Ctrl+C to exit ⚡${NC}"
