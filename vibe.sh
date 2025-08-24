@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Clean Coding Vibe Terminal Screensaver - No Animation Version
-# Colors without blinking
-NEON_PINK='\033[1;95m'
-NEON_CYAN='\033[1;96m'
-NEON_GREEN='\033[1;92m'
-NEON_YELLOW='\033[1;93m'
-NEON_BLUE='\033[1;94m'
-NEON_RED='\033[1;91m'
-NEON_WHITE='\033[1;97m'
-NEON_ORANGE='\033[38;5;208m'
+# Enhanced Neon Colors - True neon theme
+NEON_PINK='\033[38;5;198m'      # Hot pink
+NEON_CYAN='\033[38;5;51m'       # Electric cyan
+NEON_GREEN='\033[38;5;46m'      # Matrix green
+NEON_YELLOW='\033[38;5;226m'    # Electric yellow
+NEON_BLUE='\033[38;5;33m'       # Electric blue
+NEON_RED='\033[38;5;196m'       # Hot red
+NEON_WHITE='\033[38;5;15m'      # Pure white
+NEON_ORANGE='\033[38;5;202m'    # Electric orange
+NEON_PURPLE='\033[38;5;129m'    # Electric purple
+NEON_MAGENTA='\033[38;5;201m'   # Hot magenta
 NC='\033[0m' # No Color
 
 # Check if we're in a proper terminal
@@ -57,85 +58,84 @@ get_system_info() {
     PUBLIC_IP=$(timeout 2 curl -s ifconfig.me 2>/dev/null || echo "Offline")
 }
 
-# ASCII Art - Put your custom art here
+# ASCII Art - CODE MODE with wizard theme
 ascii_art() {
     cat << "EOF"
-
-
----------------------------------------------------------
----------------------------------------------------------
-------------------------#+#++#+#-------------------------
---------------------..####-######------------------------
-----------------...##+#####+#+####-............-.-.......
-.................---####++#####+###-.....................
-.................######++####+######.....................
-.................#-####+########-##......---...........-.
-...--....-..........#+#+---#+######.-.----++---++--------
-----.----..-----------+##..--+--###--+-+--+-++.--+++++-+-
-----------.--------..-.-+----+#-#####.---+-+--++++---+#++
---------------..--+++-#----+##-----++#-#++-++-+#+-###+-+#
--+--+----------#+-+#+-++######-+--.-##+--+#+#--++-++-#---
--+++++---+-+--+##--#--#+#..#-------.###-#++++#-+++.--++++
-+++--++----+++-#-##.--++##...---.-+-+##-#-#.+-+--++.+-+++
-+-+--+.#+---+-####+.+++-#+#..----#..##-#-#-.+###--++#+--#
--###+-+-+--+#+--###---+++#-+...+.--.##+++#-#####++-#++-+-
--+++++#+--#--#+###-+-##----+...-.--.###.##+###+##--+--#++
-+-+#+#+.#####+###--+##+--++#..-...-..++##########++-#--#+
-.++---++-+-#####--+###----+-....-...-#+####-+--#+-+#+#-#+
----++++..##+###-+-+####---#-..-..----#############-----++
-+++++####-##++++-++-#+#+--++.....-...+#######--+#++-+++++
-+++######.###+.--+#-###++-#+.....-..-.#####---###########
-
-
+    🧙‍♂️ ═══════════════════════════════════ 🧙‍♂️
+    ⚡             CODE WIZARD              ⚡
+    🔮 ═══════════════════════════════════ 🔮
+    
+            ████████╗██╗  ██╗███████╗
+            ╚══██╔══╝██║  ██║██╔════╝
+               ██║   ███████║█████╗  
+               ██║   ██╔══██║██╔══╝  
+               ██║   ██║  ██║███████╗
+               ╚═╝   ╚═╝  ╚═╝╚══════╝
+    
+          ████████╗███████╗██████╗ ███╗   ███╗
+          ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
+             ██║   █████╗  ██████╔╝██╔████╔██║
+             ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║
+             ██║   ███████╗██║  ██║██║ ╚═╝ ██║
+             ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
+    
+            🎯 LOCKED AND LOADED 🎯
+              { CODE.EXECUTE() }
+    
+          💻 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 💻
+            ⚡ TERMINAL WIZARD ACTIVE ⚡
+          💻 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 💻
 EOF
 }
 
-# Left panel: Image + IP Address
+# Left panel: Code Wizard + Network
 display_left_panel() {
-    echo -e "${NEON_CYAN}"
+    echo -e "${NEON_MAGENTA}"
     ascii_art
     echo -e "${NC}"
     echo
-    echo -e "${NEON_BLUE}╔═══════════════════════════════╗${NC}"
-    echo -e "${NEON_BLUE}║${NEON_WHITE}        NETWORK INFO         ${NEON_BLUE}║${NC}"
-    echo -e "${NEON_BLUE}╠═══════════════════════════════╣${NC}"
-    printf "${NEON_BLUE}║${NEON_ORANGE} Local IP:  %-18s${NEON_BLUE}║${NC}\n" "$LOCAL_IP"
-    printf "${NEON_BLUE}║${NEON_ORANGE} Public IP: %-18s${NEON_BLUE}║${NC}\n" "$PUBLIC_IP"
-    echo -e "${NEON_BLUE}╚═══════════════════════════════╝${NC}"
+    echo -e "${NEON_CYAN}    🌐 NETWORK INTERFACE 🌐${NC}"
+    echo -e "${NEON_GREEN}    ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼${NC}"
+    echo -e "${NEON_ORANGE}    🔗 Local IP:  ${NEON_WHITE}$LOCAL_IP${NC}"
+    echo -e "${NEON_ORANGE}    🌍 Public IP: ${NEON_WHITE}$PUBLIC_IP${NC}"
+    echo -e "${NEON_GREEN}    ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲${NC}"
+    echo
+    echo -e "${NEON_YELLOW}    ⚡ CONNECTION ESTABLISHED ⚡${NC}"
 }
 
-# Right panel: System info + Versions only
+# Right panel: System Wizard Stats + Code Arsenal
 display_right_panel() {
-    echo -e "${NEON_PINK}╔════════════════════════════════════════════╗${NC}"
-    echo -e "${NEON_PINK}║${NEON_WHITE}              SYSTEM INFO                ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╠════════════════════════════════════════════╣${NC}"
-    printf "${NEON_PINK}║${NEON_YELLOW} User:    %-30s${NEON_PINK}║${NC}\n" "$USER_NAME@$HOSTNAME"
-    printf "${NEON_PINK}║${NEON_YELLOW} OS:      %-30s${NEON_PINK}║${NC}\n" "$(echo $OS | cut -c1-30)"
-    printf "${NEON_PINK}║${NEON_YELLOW} Kernel:  %-30s${NEON_PINK}║${NC}\n" "$KERNEL"
-    printf "${NEON_PINK}║${NEON_YELLOW} Shell:   %-30s${NEON_PINK}║${NC}\n" "$SHELL_VERSION"
-    printf "${NEON_PINK}║${NEON_YELLOW} Uptime:  %-30s${NEON_PINK}║${NC}\n" "$(echo $UPTIME | cut -c1-30)"
-    printf "${NEON_PINK}║${NEON_YELLOW} RAM:     %-30s${NEON_PINK}║${NC}\n" "$MEMORY"
-    printf "${NEON_PINK}║${NEON_YELLOW} Disk:    %-30s${NEON_PINK}║${NC}\n" "$DISK"
-    printf "${NEON_PINK}║${NEON_YELLOW} CPU:     %-30s${NEON_PINK}║${NC}\n" "$(echo $CPU | cut -c1-30)"
-    echo -e "${NEON_PINK}╠════════════════════════════════════════════╣${NC}"
-    echo -e "${NEON_PINK}║${NEON_GREEN}                VERSIONS                 ${NEON_PINK}║${NC}"
-    echo -e "${NEON_PINK}╠════════════════════════════════════════════╣${NC}"
-    printf "${NEON_PINK}║${NEON_GREEN} Editor:  %-30s${NEON_PINK}║${NC}\n" "$CODE_EDITOR"
-    printf "${NEON_PINK}║${NEON_GREEN} Git:     %-30s${NEON_PINK}║${NC}\n" "$GIT_VERSION"
-    printf "${NEON_PINK}║${NEON_GREEN} Python:  %-30s${NEON_PINK}║${NC}\n" "$PYTHON_VERSION"
-    printf "${NEON_PINK}║${NEON_GREEN} Node:    %-30s${NEON_PINK}║${NC}\n" "$NODE_VERSION"
-    echo -e "${NEON_PINK}╚════════════════════════════════════════════╝${NC}"
+    echo -e "${NEON_PINK}    🖥️  SYSTEM MATRIX 🖥️${NC}"
+    echo -e "${NEON_CYAN}    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON_YELLOW}    👤 Wizard:    ${NEON_WHITE}$USER_NAME@$HOSTNAME${NC}"
+    echo -e "${NEON_YELLOW}    🏠 Domain:    ${NEON_WHITE}$(echo $OS | cut -c1-25)${NC}"
+    echo -e "${NEON_YELLOW}    ⚙️  Core:      ${NEON_WHITE}$KERNEL${NC}"
+    echo -e "${NEON_YELLOW}    🐚 Shell:     ${NEON_WHITE}$SHELL_VERSION${NC}"
+    echo -e "${NEON_YELLOW}    ⏱️  Runtime:   ${NEON_WHITE}$(echo $UPTIME | cut -c1-25)${NC}"
+    echo -e "${NEON_YELLOW}    🧠 Memory:    ${NEON_WHITE}$MEMORY${NC}"
+    echo -e "${NEON_YELLOW}    💾 Storage:   ${NEON_WHITE}$DISK${NC}"
+    echo -e "${NEON_YELLOW}    🔥 Processor: ${NEON_WHITE}$(echo $CPU | cut -c1-25)${NC}"
+    echo
+    echo -e "${NEON_GREEN}    🛠️  CODE ARSENAL 🛠️${NC}"
+    echo -e "${NEON_MAGENTA}    ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼${NC}"
+    echo -e "${NEON_GREEN}    📝 Editor:    ${NEON_WHITE}$CODE_EDITOR${NC}"
+    echo -e "${NEON_GREEN}    🔄 Git:       ${NEON_WHITE}$GIT_VERSION${NC}"
+    echo -e "${NEON_GREEN}    🐍 Python:    ${NEON_WHITE}$PYTHON_VERSION${NC}"
+    echo -e "${NEON_GREEN}    📦 Node.js:   ${NEON_WHITE}$NODE_VERSION${NC}"
+    echo -e "${NEON_MAGENTA}    ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲${NC}"
+    echo
+    echo -e "${NEON_RED}    ⚡ WIZARD MODE: ACTIVATED ⚡${NC}"
 }
 
-# Static display - no animation, no flicker
+# Static display - CODE WIZARD MODE
 main_display() {
     get_system_info
     clear
     
-    # Simple header - no animation
-    echo -e "${NEON_CYAN}╔════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${NEON_CYAN}║${NEON_WHITE}                              🚀 CODE VIBES 🚀                            ${NEON_CYAN}║${NC}"
-    echo -e "${NEON_CYAN}╚════════════════════════════════════════════════════════════════════════════╝${NC}"
+    # Epic wizard header
+    echo -e "${NEON_MAGENTA}    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░${NC}"
+    echo -e "${NEON_CYAN}    ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦ 🧙‍♂️ TERMINAL CODE WIZARD 🧙‍♂️ ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦${NC}"
+    echo -e "${NEON_MAGENTA}    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░${NC}"
     echo
     
     # Create both panels
@@ -143,8 +143,36 @@ main_display() {
     right_content=$(display_right_panel)
     
     # Split into arrays
-    IFS=$'\n' read -rd '' -a left_lines <<< "$left_content" || true
-    IFS=$'\n' read -rd '' -a right_lines <<< "$right_content" || true
+    IFS=
+
+# Get system info once and display
+echo -e "${NEON_MAGENTA}🔮 Initializing Terminal Wizard...${NC}"
+sleep 1
+echo -e "${NEON_CYAN}⚡ Loading magical code powers...${NC}"
+sleep 1
+echo -e "${NEON_GREEN}🧙‍♂️ Wizard mode activated!${NC}"
+sleep 1
+
+# Single display - no loop, no flicker
+main_display
+
+# Wait for user input to exit
+while true; do
+    sleep 1
+done\n' read -rd '' -a left_lines <<< "$left_content" || true
+    IFS=
+
+# Get system info once and display
+echo -e "${NEON_CYAN}Loading system information...${NC}"
+sleep 1
+
+# Single display - no loop, no flicker
+main_display
+
+# Wait for user input to exit
+while true; do
+    sleep 1
+done\n' read -rd '' -a right_lines <<< "$right_content" || true
     
     # Get max lines
     max_lines=${#left_lines[@]}
@@ -152,14 +180,14 @@ main_display() {
         max_lines=${#right_lines[@]}
     fi
     
-    # Display side by side
+    # Display side by side with better spacing
     for ((i=0; i<max_lines; i++)); do
         left_line="${left_lines[i]:-}"
         right_line="${right_lines[i]:-}"
         
-        # Calculate spacing (remove ANSI codes for length calculation)
-        left_clean=$(echo -e "$left_line" | sed 's/\x1b\[[0-9;]*m//g')
-        spaces_needed=$((40 - ${#left_clean}))
+        # Calculate spacing for perfect alignment
+        left_clean=$(echo -e "$left_line" | sed 's/\x1b\[[0-9;]*m//g' | sed 's/\x1b\[[0-9]*;//g')
+        spaces_needed=$((50 - ${#left_clean}))
         if [ $spaces_needed -lt 2 ]; then
             spaces_needed=2
         fi
@@ -168,7 +196,9 @@ main_display() {
     done
     
     echo
-    echo -e "${NEON_RED}                    Press Ctrl+C to exit${NC}"
+    echo -e "${NEON_RED}    ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡${NC}"
+    echo -e "${NEON_YELLOW}        🔮 Press Ctrl+C to exit the wizard realm 🔮${NC}"
+    echo -e "${NEON_RED}    ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡ ⚡${NC}"
 }
 
 # Get system info once and display
