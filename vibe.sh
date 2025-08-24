@@ -54,9 +54,8 @@ display_terminal() {
     echo -e "${BRIGHT}${NEON_PURPLE}    ██╔════╝${NEON_MAGENTA}██╔═══██╗${NEON_PINK}██╔══██╗${NEON_RED}██╔════╝${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ ADMIN:   ${NEON_WHITE}$USER_NAME${NEON_YELLOW}@${NEON_WHITE}$HOSTNAME${NC}"
     echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}█████╗  ${NEON_ORANGE}██████╔╝    ${NEON_GREEN}${BRIGHT}▶ KERNEL:  ${NEON_WHITE}$OS${NC}"
     echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}██╔══╝  ${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ UPTIME:  ${NEON_YELLOW}$UPTIME${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}    ╚██████╗${NEON_MAGENTA}╚██████╔╝${NEON_PINK}██████╔╝${NEON_RED}███████╗${NEON_ORANGE}██║  ██║    ${NEON_GREEN}${BRIGHT}▶ MEMORY:  ${NEON_CYAN}${MEMORY}GB${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}     ╚═════╝${NEON_MAGENTA} ╚═════╝ ${NEON_PINK}╚═════╝ ${NEON_RED}╚══════╝${NEON_ORANGE}╚═╝  ╚═╝    ${NEON_GREEN}${BRIGHT}▶ LOAD:    ${NEON_RED}$LOAD_AVG${NC}"
-    echo -e "                                                     ${NEON_BLUE}${BRIGHT}▶ WIFI_IP: ${NEON_YELLOW}$WIFI_IP${NC}"                                                      
+    echo -e "${BRIGHT}${NEON_PURPLE}    ╚██████╗${NEON_MAGENTA}╚██████╔╝${NEON_PINK}██████╔╝${NEON_RED}███████╗${NEON_ORANGE}██║  ██║    ${NEON_GREEN}${BRIGHT}▶ WiFiIp:  ${NEON_CYAN}${WIFI_IP}GB${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}     ╚═════╝${NEON_MAGENTA} ╚═════╝ ${NEON_PINK}╚═════╝ ${NEON_RED}╚══════╝${NEON_ORANGE}╚═╝  ╚═╝    ${NEON_GREEN}${BRIGHT}▶ LOAD:    ${NEON_RED}$LOAD_AVG${NC}"                                                    
     echo # Spacing
     # Enhanced second section with gradient colors
     echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╗ ${NEON_BLUE} █████╗ ${NEON_PURPLE}██████╗ ${NEON_MAGENTA}███████╗     ${NEON_PINK}${BRIGHT}⚡ DEV_STACK ⚡${NC}"
@@ -67,11 +66,7 @@ display_terminal() {
     echo -e "${BRIGHT}${NEON_GREEN}    ╚══════╝${NEON_CYAN}╚═╝     ${NEON_BLUE}╚═╝  ╚═╝${NEON_PURPLE} ╚═════╝${NEON_MAGENTA}╚══════╝     ${NEON_ORANGE}${BRIGHT}◆ TIME:    ${NEON_WHITE}$(date '+%H:%M:%S')${NC}"
     echo # Spacing
     
-    # Enhanced footer with multiple colors
-    echo -e "${BRIGHT}${NEON_PINK}╔══════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${BRIGHT}${NEON_PINK}║${NEON_YELLOW}${BRIGHT}                      ⚡⚡⚡ ${NEON_WHITE}Press Ctrl+C to exit${NEON_YELLOW} ⚡⚡⚡                      ${NEON_PINK}║${NC}"
-    echo -e "${BRIGHT}${NEON_PINK}║${NEON_CYAN}                        【 ${NEON_WHITE}TERMINAL VIBES ACTIVE${NEON_CYAN} 】                        ${NEON_PINK}║${NC}"
-    echo -e "${BRIGHT}${NEON_PINK}╚══════════════════════════════════════════════════════════════════════════════╝${NC}"
+
 }
 
 # Enhanced loading sequence
@@ -100,7 +95,7 @@ done
     
     echo
     echo -e "${NEON_RED}                   ⚡ Press Ctrl+C to exit ⚡${NC}"
-}
+
 
 # Get system info once and display
 echo -e "${NEON_MAGENTA}🔮 Initializing Terminal Wizard...${NC}"
