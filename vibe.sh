@@ -24,7 +24,7 @@ cleanup() {
     tput cnorm 2>/dev/null || true
     echo -e "${NC}"
     clear
-    echo "Thanks for vibing! 🚀"
+    echo "Stay cyber! 💻"
     exit 0
 }
 
@@ -39,113 +39,82 @@ tput civis 2>/dev/null || true
 get_system_info() {
     USER_NAME=$(whoami)
     HOSTNAME=$(hostname)
-    OS=$(lsb_release -d 2>/dev/null | cut -f2 || uname -o)
-    KERNEL=$(uname -r)
-    UPTIME=$(uptime -p 2>/dev/null | sed 's/up //' || uptime | cut -d',' -f1)
+    OS=$(lsb_release -d 2>/dev/null | cut -f2 | cut -c1-15 || uname -o | cut -c1-15)
+    KERNEL=$(uname -r | cut -c1-15)
+    UPTIME=$(uptime -p 2>/dev/null | sed 's/up //' | cut -c1-15 || uptime | cut -d',' -f1 | cut -c1-15)
     SHELL_VERSION=$(echo $SHELL | xargs basename)
     MEMORY=$(free -h 2>/dev/null | awk 'NR==2{printf "%.1f/%.1fGB", $3/1024/1024, $2/1024/1024}' || echo "N/A")
     DISK=$(df -h / 2>/dev/null | awk 'NR==2{printf "%s/%s", $3, $2}' || echo "N/A")
-    CPU=$(lscpu 2>/dev/null | grep "Model name" | cut -f 2 -d ":" | awk '{$1=$1}1' | cut -c1-30 || echo "Unknown CPU")
 
-    # Versions only
-    GIT_VERSION=$(git --version 2>/dev/null | cut -d' ' -f3 || echo "Not installed")
-    NODE_VERSION=$(node --version 2>/dev/null || echo "Not installed")
-    PYTHON_VERSION=$(python3 --version 2>/dev/null | cut -d' ' -f2 || echo "Not installed")
-    CODE_EDITOR=$(which code nvim vim nano 2>/dev/null | head -n1 | xargs basename 2>/dev/null || echo "nano")
+    # Dev tools
+    GIT_VERSION=$(git --version 2>/dev/null | cut -d' ' -f3 | cut -c1-10 || echo "None")
+    NODE_VERSION=$(node --version 2>/dev/null | cut -c1-10 || echo "None")
+    PYTHON_VERSION=$(python3 --version 2>/dev/null | cut -d' ' -f2 | cut -c1-8 || echo "None")
 
-    # Network only
+    # Network
     LOCAL_IP=$(hostname -I 2>/dev/null | awk '{print $1}' || echo "N/A")
     PUBLIC_IP=$(timeout 2 curl -s ifconfig.me 2>/dev/null || echo "Offline")
 }
 
-# ASCII Art - CODE MODE with wizard theme
+# ASCII Art - Cyberpunk Coder Theme
 ascii_art() {
     cat << "EOF"
-    🧙‍♂️ ═══════════════════════════════════ 🧙‍♂️
-    ⚡             CODE WIZARD              ⚡
-    🔮 ═══════════════════════════════════ 🔮
-    
-            ████████╗██╗  ██╗███████╗
-            ╚══██╔══╝██║  ██║██╔════╝
-               ██║   ███████║█████╗  
-               ██║   ██╔══██║██╔══╝  
-               ██║   ██║  ██║███████╗
-               ╚═╝   ╚═╝  ╚═╝╚══════╝
-    
-          ████████╗███████╗██████╗ ███╗   ███╗
-          ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
-             ██║   █████╗  ██████╔╝██╔████╔██║
-             ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║
-             ██║   ███████╗██║  ██║██║ ╚═╝ ██║
-             ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
-    
-            🎯 LOCKED AND LOADED 🎯
-              { CODE.EXECUTE() }
-    
-          💻 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 💻
-            ⚡ TERMINAL WIZARD ACTIVE ⚡
-          💻 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 💻
+      ⚡ CYBER CODER ⚡
+    ╔═══════════════════╗
+    ║    ██╗  ██╗██╗    ║
+    ║    ██║  ██║██║    ║
+    ║    ███████║██║    ║
+    ║    ██╔══██║██║    ║
+    ║    ██║  ██║██║    ║
+    ║    ╚═╝  ╚═╝╚═╝    ║
+    ║  { CODE_MATRIX }  ║
+    ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
+    ║    [ONLINE]       ║
+    ╚═══════════════════╝
+      💻 HACK THE WORLD
 EOF
 }
 
-# Left panel: Code Wizard + Network
+# Left panel
 display_left_panel() {
-    echo -e "${NEON_MAGENTA}"
+    echo -e "${NEON_CYAN}"
     ascii_art
     echo -e "${NC}"
-    echo
-    echo -e "${NEON_CYAN}    🌐 NETWORK INTERFACE 🌐${NC}"
-    echo -e "${NEON_GREEN}    ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼${NC}"
-    echo -e "${NEON_ORANGE}    🔗 Local IP:  ${NEON_WHITE}$LOCAL_IP${NC}"
-    echo -e "${NEON_ORANGE}    🌍 Public IP: ${NEON_WHITE}$PUBLIC_IP${NC}"
-    echo -e "${NEON_GREEN}    ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲${NC}"
-    echo
-    echo -e "${NEON_YELLOW}    ⚡ CONNECTION ESTABLISHED ⚡${NC}"
+    echo -e "${NEON_ORANGE}🌐 WAN: ${NEON_WHITE}$PUBLIC_IP${NC}"
+    echo -e "${NEON_GREEN}🔗 LAN: ${NEON_WHITE}$LOCAL_IP${NC}"
 }
 
-# Right panel: System Wizard Stats + Code Arsenal
+# Right panel
 display_right_panel() {
-    echo -e "${NEON_PINK}    🖥️  SYSTEM MATRIX 🖥️${NC}"
-    echo -e "${NEON_CYAN}    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-    echo -e "${NEON_YELLOW}    👤 Wizard:    ${NEON_WHITE}$USER_NAME@$HOSTNAME${NC}"
-    echo -e "${NEON_YELLOW}    🏠 Domain:    ${NEON_WHITE}$(echo $OS | cut -c1-25)${NC}"
-    echo -e "${NEON_YELLOW}    ⚙️  Core:      ${NEON_WHITE}$KERNEL${NC}"
-    echo -e "${NEON_YELLOW}    🐚 Shell:     ${NEON_WHITE}$SHELL_VERSION${NC}"
-    echo -e "${NEON_YELLOW}    ⏱️  Runtime:   ${NEON_WHITE}$(echo $UPTIME | cut -c1-25)${NC}"
-    echo -e "${NEON_YELLOW}    🧠 Memory:    ${NEON_WHITE}$MEMORY${NC}"
-    echo -e "${NEON_YELLOW}    💾 Storage:   ${NEON_WHITE}$DISK${NC}"
-    echo -e "${NEON_YELLOW}    🔥 Processor: ${NEON_WHITE}$(echo $CPU | cut -c1-25)${NC}"
+    echo -e "${NEON_PINK}🖥️  SYSTEM CORE${NC}"
+    echo -e "${NEON_CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${NEON_YELLOW}User: ${NEON_WHITE}$USER_NAME@$HOSTNAME${NC}"
+    echo -e "${NEON_YELLOW}OS:   ${NEON_WHITE}$OS${NC}"
+    echo -e "${NEON_YELLOW}Core: ${NEON_WHITE}$KERNEL${NC}"
+    echo -e "${NEON_YELLOW}Up:   ${NEON_WHITE}$UPTIME${NC}"
+    echo -e "${NEON_YELLOW}RAM:  ${NEON_WHITE}$MEMORY${NC}"
+    echo -e "${NEON_YELLOW}Disk: ${NEON_WHITE}$DISK${NC}"
     echo
-    echo -e "${NEON_GREEN}    🛠️  CODE ARSENAL 🛠️${NC}"
-    echo -e "${NEON_MAGENTA}    ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼${NC}"
-    echo -e "${NEON_GREEN}    📝 Editor:    ${NEON_WHITE}$CODE_EDITOR${NC}"
-    echo -e "${NEON_GREEN}    🔄 Git:       ${NEON_WHITE}$GIT_VERSION${NC}"
-    echo -e "${NEON_GREEN}    🐍 Python:    ${NEON_WHITE}$PYTHON_VERSION${NC}"
-    echo -e "${NEON_GREEN}    📦 Node.js:   ${NEON_WHITE}$NODE_VERSION${NC}"
-    echo -e "${NEON_MAGENTA}    ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲ ▲${NC}"
-    echo
-    echo -e "${NEON_RED}    ⚡ WIZARD MODE: ACTIVATED ⚡${NC}"
+    echo -e "${NEON_GREEN}⚡ DEV STACK${NC}"
+    echo -e "${NEON_MAGENTA}▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼${NC}"
+    echo -e "${NEON_GREEN}Git:    ${NEON_WHITE}$GIT_VERSION${NC}"
+    echo -e "${NEON_GREEN}Python: ${NEON_WHITE}$PYTHON_VERSION${NC}"
+    echo -e "${NEON_GREEN}Node:   ${NEON_WHITE}$NODE_VERSION${NC}"
+    echo -e "${NEON_GREEN}Shell:  ${NEON_WHITE}$SHELL_VERSION${NC}"
+    echo -e "${NEON_MAGENTA}▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲${NC}"
 }
 
-# Main display
+# Main display for 80x20 terminal
 main_display() {
-    # Get fresh system info
     get_system_info
-    
-    # Clear and position
     clear
     
-    # Compact header
-    colors=("${NEON_CYAN}" "${NEON_PURPLE}" "${NEON_PINK}")
-    color=${colors[$((RANDOM % 3))]}
+    # Header
+    echo -e "${NEON_CYAN}╔══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${NEON_CYAN}║${NEON_WHITE}                           💻 CYBER TERMINAL 💻                            ${NEON_CYAN}║${NC}"
+    echo -e "${NEON_CYAN}╚══════════════════════════════════════════════════════════════════════════════╝${NC}"
     
-    echo -e "${color}╔═══════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${color}║${NEON_WHITE}                       🚀 CODE VIBES 🚀                      ${color}║${NC}"
-    echo -e "${color}╚═══════════════════════════════════════════════════════════════╝${NC}"
-    
-    echo
-    
-    # Create both panels
+    # Create panels
     left_content=$(display_left_panel)
     right_content=$(display_right_panel)
     
@@ -153,43 +122,38 @@ main_display() {
     IFS=$'\n' read -rd '' -a left_lines <<< "$left_content" || true
     IFS=$'\n' read -rd '' -a right_lines <<< "$right_content" || true
     
-    # Get max lines
+    # Display side by side
     max_lines=${#left_lines[@]}
     if [ ${#right_lines[@]} -gt $max_lines ]; then
         max_lines=${#right_lines[@]}
     fi
     
-    # Display side by side with better spacing
     for ((i=0; i<max_lines; i++)); do
         left_line="${left_lines[i]:-}"
         right_line="${right_lines[i]:-}"
         
-        # Calculate spacing for perfect alignment
-        left_clean=$(echo -e "$left_line" | sed 's/\x1b\[[0-9;]*m//g' | sed 's/\x1b\[[0-9]*;//g')
-        spaces_needed=$((50 - ${#left_clean}))
-        if [ $spaces_needed -lt 2 ]; then
-            spaces_needed=2
+        # Calculate spacing
+        left_clean=$(echo -e "$left_line" | sed 's/\x1b\[[0-9;]*m//g')
+        spaces_needed=$((38 - ${#left_clean}))
+        if [ $spaces_needed -lt 1 ]; then
+            spaces_needed=1
         fi
         
         printf "%s%*s%s\n" "$left_line" $spaces_needed "" "$right_line"
     done
     
-    echo
-    echo -e "${NEON_RED}                   ⚡ Press Ctrl+C to exit ⚡${NC}"
+    # Footer
+    echo -e "${NEON_RED}                      ⚡ Press Ctrl+C to disconnect ⚡${NC}"
 }
 
-# Get system info once and display
-echo -e "${NEON_MAGENTA}🔮 Initializing Terminal Wizard...${NC}"
-sleep 1
-echo -e "${NEON_CYAN}⚡ Loading magical code powers...${NC}"
-sleep 1
-echo -e "${NEON_GREEN}🧙‍♂️ Wizard mode activated!${NC}"
+# Initialize
+echo -e "${NEON_CYAN}🚀 Initializing cyber matrix...${NC}"
 sleep 1
 
-# Single display - no loop, no flicker
+# Display once
 main_display
 
-# Wait for user input to exit
+# Wait for exit
 while true; do
     sleep 1
 done
