@@ -38,7 +38,7 @@ get_system_info() {
     LOCAL_IP=$(hostname -I 2>/dev/null | awk '{print $1}' || echo "127.0.0.1")
     WIFI_IP=$(ip route get 1.1.1.1 2>/dev/null | grep -oP 'src \K\S+' || echo "N/A")
     GIT_VERSION=$(git --version 2>/dev/null | cut -d' ' -f3 | cut -c1-6 || echo "N/A")
-    PYTHON_VERSION=$(python3 --version 2>/dev/null | cut -d' ' -f2 | cut -c1-5 || echo "N/A")
+    PYTHON_VERSION=$(python3 --version 2>/dev/null | cut -d' ' -f2 | cut -c1-6 || echo "N/A")
     LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//' || echo "0.0")
 }
 
@@ -51,19 +51,19 @@ display_terminal() {
     
     # Enhanced ASCII with rainbow gradient colors
     echo -e "${BRIGHT}${NEON_PURPLE}     ██████╗ ${NEON_MAGENTA}██████╗ ${NEON_PINK}██████╗ ${NEON_RED}███████╗${NEON_ORANGE}██████╗     ${NEON_CYAN}${BRIGHT}⚡ SYSTEM_CORE ⚡${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}    ██╔════╝${NEON_MAGENTA}██╔═══██╗${NEON_PINK}██╔══██╗${NEON_RED}██╔════╝${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ ADMIN:   ${NEON_WHITE}$USER_NAME${NEON_YELLOW}@${NEON_WHITE}$HOSTNAME${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}█████╗  ${NEON_ORANGE}██████╔╝    ${NEON_GREEN}${BRIGHT}▶ KERNEL:  ${NEON_WHITE}$OS${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}██╔══╝  ${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ UPTIME:  ${NEON_YELLOW}$UPTIME${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}    ╚██████╗${NEON_MAGENTA}╚██████╔╝${NEON_PINK}██████╔╝${NEON_RED}███████╗${NEON_ORANGE}██║  ██║    ${NEON_GREEN}${BRIGHT}▶ WiFiIp:  ${NEON_CYAN}${WIFI_IP}GB${NC}"
-    echo -e "${BRIGHT}${NEON_PURPLE}     ╚═════╝${NEON_MAGENTA} ╚═════╝ ${NEON_PINK}╚═════╝ ${NEON_RED}╚══════╝${NEON_ORANGE}╚═╝  ╚═╝    ${NEON_GREEN}${BRIGHT}▶ LOAD:    ${NEON_RED}$LOAD_AVG${NC}"                                                    
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██╔════╝${NEON_MAGENTA}██╔═══██╗${NEON_PINK}██╔══██╗${NEON_RED}██╔════╝${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ ADMIN:   ${NEON_PURPLE}$USER_NAME${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}█████╗  ${NEON_ORANGE}██████╔╝    ${NEON_GREEN}${BRIGHT}▶ KERNEL:  ${NEON_PURPLE}$OS${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ██║     ${NEON_MAGENTA}██║   ██║${NEON_PINK}██║  ██║${NEON_RED}██╔══╝  ${NEON_ORANGE}██╔══██╗    ${NEON_GREEN}${BRIGHT}▶ UPTIME:  ${NEON_PURPLE}$UPTIME${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}    ╚██████╗${NEON_MAGENTA}╚██████╔╝${NEON_PINK}██████╔╝${NEON_RED}███████╗${NEON_ORANGE}██║  ██║    ${NEON_GREEN}${BRIGHT}▶ WiFiIp:  ${NEON_PURPLE}${WIFI_IP}${NC}"
+    echo -e "${BRIGHT}${NEON_PURPLE}     ╚═════╝${NEON_MAGENTA} ╚═════╝ ${NEON_PINK}╚═════╝ ${NEON_RED}╚══════╝${NEON_ORANGE}╚═╝  ╚═╝    ${NEON_GREEN}${BRIGHT}▶ LOAD:    ${NEON_PURPLE}$LOAD_AVG${NC}"                                                    
     echo # Spacing
     # Enhanced second section with gradient colors
     echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╗ ${NEON_BLUE} █████╗ ${NEON_PURPLE}██████╗ ${NEON_MAGENTA}███████╗     ${NEON_PINK}${BRIGHT}⚡ DEV_STACK ⚡${NC}"
-    echo -e "${BRIGHT}${NEON_GREEN}    ██╔════╝${NEON_CYAN}██╔══██╗${NEON_BLUE}██╔══██╗${NEON_PURPLE}██╔════╝${NEON_MAGENTA}██╔════╝     ${NEON_YELLOW}${BRIGHT}◆ GIT:     ${NEON_WHITE}v${GIT_VERSION}${NC}"
-    echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╔╝${NEON_BLUE}███████║${NEON_PURPLE}██║     ${NEON_MAGENTA}█████╗       ${NEON_YELLOW}${BRIGHT}◆ PYTHON:  ${NEON_WHITE}v${PYTHON_VERSION}${NC}"
-    echo -e "${BRIGHT}${NEON_GREEN}    ╚════██║${NEON_CYAN}██╔═══╝ ${NEON_BLUE}██╔══██║${NEON_PURPLE}██║     ${NEON_MAGENTA}██╔══╝       ${NEON_YELLOW}${BRIGHT}◆ SHELL:   ${NEON_WHITE}zsh${NC}"
-    echo -e "${BRIGHT}${NEON_GREEN}    ███████║${NEON_CYAN}██║     ${NEON_BLUE}██║  ██║${NEON_PURPLE}╚██████╗${NEON_MAGENTA}███████╗     ${NEON_RED}${BRIGHT}◆ STATUS:  ${NEON_GREEN}[${BRIGHT}ACTIVE${NC}${NEON_GREEN}]${NC}"
-    echo -e "${BRIGHT}${NEON_GREEN}    ╚══════╝${NEON_CYAN}╚═╝     ${NEON_BLUE}╚═╝  ╚═╝${NEON_PURPLE} ╚═════╝${NEON_MAGENTA}╚══════╝     ${NEON_ORANGE}${BRIGHT}◆ TIME:    ${NEON_WHITE}$(date '+%H:%M:%S')${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ██╔════╝${NEON_CYAN}██╔══██╗${NEON_BLUE}██╔══██╗${NEON_PURPLE}██╔════╝${NEON_MAGENTA}██╔════╝     ${NEON_YELLOW}${BRIGHT}◆ GIT:     ${NEON_BLUE}v${GIT_VERSION}${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ███████╗${NEON_CYAN}██████╔╝${NEON_BLUE}███████║${NEON_PURPLE}██║     ${NEON_MAGENTA}█████╗       ${NEON_YELLOW}${BRIGHT}◆ PYTHON:  ${NEON_BLUE}v${PYTHON_VERSION}${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ╚════██║${NEON_CYAN}██╔═══╝ ${NEON_BLUE}██╔══██║${NEON_PURPLE}██║     ${NEON_MAGENTA}██╔══╝       ${NEON_YELLOW}${BRIGHT}◆ SHELL:   ${NEON_BLUE}zsh${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ███████║${NEON_CYAN}██║     ${NEON_BLUE}██║  ██║${NEON_PURPLE}╚██████╗${NEON_MAGENTA}███████╗     ${NEON_YELLOW}${BRIGHT}◆ STATUS:  ${NEON_BLUE}[${BRIGHT}ACTIVE${NC}${NEON_GREEN}]${NC}"
+    echo -e "${BRIGHT}${NEON_GREEN}    ╚══════╝${NEON_CYAN}╚═╝     ${NEON_BLUE}╚═╝  ╚═╝${NEON_PURPLE} ╚═════╝${NEON_MAGENTA}╚══════╝     ${NEON_YELLOW}${BRIGHT}◆ TIME:    ${NEON_BLUE}$(date '+%H:%M:%S')${NC}"
     echo # Spacing
     
 
