@@ -140,7 +140,7 @@ display_info() {
 # Matrix-style effect
 matrix_line() {
     local width=$1
-    chars=("0" "1" "{" "}" "[" "]" "(" ")" "<" ">" "/" "\" ";" ":")
+    local chars=("0" "1" "a" "b" "c" "d" "e" "f" "x" "y" "z" "+" "-" "*" "=" "|")
     echo -ne "${MATRIX_GREEN}${DIM}"
     for ((i=0; i<width; i++)); do
         if (( RANDOM % 4 == 0 )); then
